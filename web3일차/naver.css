@@ -11,31 +11,38 @@ html body h1{
     position: relative;
     margin: 0 auto;
     width: 460px;
-    margin-top: 50px;
+    height: 184px;
+    box-sizing: border-box;
+}
+.lg_home{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
 }
 .logo {
     display: block;
-    background-image: url(images/pc_sp_login_190522.png);
-    width: 231px;
-    height: 44px;
     margin: 0 auto;
-    background-position: -1px -1px;
+    position: absolute;
+    bottom:34px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 #list { 
     position: absolute;
-    top: -35px;
-    left: 15px;
+    top: 6px;
+    left: 6PX;
 }
 #notification { 
     position: absolute;
-    top: -31px;
-    right: 15px;
+    top: 6px;
+    right: 9PX;
 }
 
 #container {
     margin: 0 auto;
-    margin-top: 30px;
-    width: 460px;
+    width: 662px;
     height: 350px;
 }
 #search-wrapper {
@@ -45,12 +52,13 @@ html body h1{
 #input-wrapper {
     position: relative;
     margin: 0 auto;
-    width: 420px;
+    width: 592px;
 }
 .search {
-    width: 420px;
-    height: 48px;
-    border: solid 2px #04CF5C;
+    width: 592px;
+    height: 56px;
+    border: solid 1px #04CF5C;
+    border-radius: 3px;
     font-weight: 500;
     font-size: 17px;
     color: #222;
@@ -76,7 +84,7 @@ html body h1{
 }
 
 .quick-item {
-    margin-top: 30px;
+    margin-top: 20px;
     width: 112px;
     display: flex;
     flex-direction: column;
