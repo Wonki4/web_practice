@@ -1,0 +1,115 @@
+html body h1{
+    padding: 0;
+    margin: 0;
+}
+#wrap {
+    position: relative;
+    min-height: 100%;
+}
+
+#header {
+    position: relative;
+    margin: 0 auto;
+    width: 460px;
+    margin-top: 50px;
+}
+.logo {
+    display: block;
+    background-image: url(images/pc_sp_login_190522.png);
+    width: 231px;
+    height: 44px;
+    margin: 0 auto;
+    background-position: -1px -1px;
+}
+#list { 
+    position: absolute;
+    top: -35px;
+    left: 15px;
+}
+#notification { 
+    position: absolute;
+    top: -31px;
+    right: 15px;
+}
+
+#container {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 460px;
+    height: 350px;
+}
+#search-wrapper {
+    position: relative;
+    width: 100%;
+}
+#input-wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 420px;
+}
+.search {
+    width: 420px;
+    height: 48px;
+    border: solid 2px #04CF5C;
+    font-weight: 500;
+    font-size: 17px;
+    color: #222;
+    padding :7px 35px 10px 11px;
+    box-sizing: border-box;
+}
+.quick-wrapper{
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 460px;
+    min-width: 430px;
+}
+.quick{
+    position: absolute;
+    display: block;
+    background-image:url(https://s.pstatic.net/static/www/m/uit/2020/sp_search.fc3665.png) ;
+    width: 50px;
+    height: 50px;
+    background-size: 460px 447px;
+    background-position: -177px -29px;
+}
+
+.quick-item {
+    margin-top: 30px;
+    width: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.img-icon-wrapper{
+    width:60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-icon-wrapper > img{
+    width: 50%;
+    height: 50%;
+}
+.bookmark-text {
+    color: #000;
+    font-size: 12px;
+    color: #676c6f;
+}
+#bookmark-plus {
+    margin-top:30px;
+    width:112px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#ad {
+    width: 100%;
+}
