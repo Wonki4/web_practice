@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg-fill{
+            background-color: gray;
+            border: 2px solid black;
+            color: white;
+        }
+        .flex-main{
+            display: flex;
+            height:400px;
+        }
+        .main-nav{
+            flex :1;
+        }
+        .main-section{
+            flex:4;
+            display:flex;
+            flex-direction: column;
+        }
+        .main-section > *{
+            flex:1;
+        }
+        .main-aside{
+            flex:1;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-fill">header</header>
+    <main class="bg-fill flex-main">
+        <nav class="bg-fill main-nav">nav</nav>
+        <section class="bg-fill main-section">
+            section
+            <header class="bg-fill">header</header>
+            <article class="bg-fill">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, tempore. Exercitationem nobis at pariatur libero? Vitae possimus quaerat nemo placeat modi, recusandae aut. Magnam beatae repudiandae porro molestias libero sunt!</article>
+            <footer class="bg-fill">footer</footer>
+        </section>
+        <aside class="bg-fill main-aside">aside</aside>
+    </main>
+    <footer class="bg-fill">footer</footer>
+</body>
+</html>
