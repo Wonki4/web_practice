@@ -1,0 +1,16 @@
+h1 {
+    color:#ee2244
+}
+li {
+    color:blue;
+    text-align: center
+}
+a {
+    color:black
+}
+*{
+    background-color:#f5deb3
+}
+p{
+    display:none;
+}

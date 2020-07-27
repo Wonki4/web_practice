@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <select class="animal">
+        <option value="tiger" selected>tiger</option>
+        <option value="cat">cat</option>
+        <option value="elephant">elephant</option>
+        <option value="lion">lion</option>
+    </select>
+
+    <script>
+        const animalSelect = document.querySelector(".animal");
+        animalSelect.addEventListener("change",function(e) {
+            console.log(e.target.value);
+            console.log(animalSelect.options);
+            console.log(typeof(animalSelect.options));
+            let value = animalSelect.options.selectedIndex;
+            console.log(animalSelect.options[value]);
+
+            let text  = animalSelect.options[animalSelect.options.selectedIndex].text;
+            console.log(text);
+        })
+    </script>
+</body>
+</html>

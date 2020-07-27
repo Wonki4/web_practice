@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            font-size :20px;
+        }
+        .middle{
+            display:flex;
+            justify-content: space-between;
+        }
+        nav{
+            border: 3px solid black;
+            flex:1;
+            text-align: center;
+        }
+        aside{
+            border: 3px solid black;
+            flex:1;
+            text-align: center;
+        } 
+        section{
+            border: 3px solid black;
+            flex:4;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .main_header {
+            border: 3px solid black;
+            text-align: center;
+            height: 100px;
+        }
+        footer{
+            border: 3px solid black;
+            height: 100px;
+            text-align: center;
+        }
+        header{
+            border: 3px solid black;
+        }
+        article{
+            border: 3px solid black;
+        }
+        .box{
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="main_header">여기는 헤더!</header>
+    <div class="middle">
+        <nav>
+            여기는 nav 입니다.
+            <div class="box">item</div>
+            <div class="box">item</div>
+            <div class="box">item</div>
+        </nav>
+        <section>
+            여기는 section입니다.
+            <header>section_header</header>
+            <article>section_article</article>
+            <footer>section_footer</footer>
+        </section>
+        <aside>
+            여기는 aside입니다.
+            <div class="box">item</div>
+            <div class="box">item</div>
+            <div class="box">item</div>
+        </aside>
+    </div>
+    <footer>여기는 Footer!</footer>
+</body>
+</html>

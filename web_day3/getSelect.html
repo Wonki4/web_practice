@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>값 가져오기</title>
+</head>
+<body>
+    <input class="id-input" value="aa">
+
+    <input type="checkbox" name="city" value="yeoksam">
+    <input type="checkbox" name="city" value="samsung" checked>
+    <input type="checkbox" name="city" value="gangnam" checked>
+
+    <div class="test"><test/div>
+    <div class="test"><test/div>
+    <div class="test"><test/div>
+    <div class="test"><test/div>
+    <div class="test"><test/div>
+    <script>
+        const id =document.querySelector(".id-input");
+        console.log(id.value);
+
+        // const check = document.querySelectorAll("input[name=city]:checked");
+        // console.log(check);
+
+        const test = document.querySelectorAll(".test");
+        // console.log(test);
+        
+
+    </script>
+</body>
+</html>

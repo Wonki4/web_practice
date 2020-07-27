@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .reg {
+            margin: 0 auto;
+            width :400px;
+
+        }
+        .register-form{
+            display : flex;
+            flex-direction: column;
+        }
+        .form {
+            margin:20px 0;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reg">
+        <form class="register-form">
+            <input type="text" placeholder="아이디" id="id" class="form">
+            <input type="password" placeholder="비밀번호" id="pwd" class="form">
+            <button id="register" class="form">회원가입하기</button>
+        </form>
+    </div>
+    <script>
+        const id = document.querySelector("#id");
+        const pwd = document.querySelector("#pwd");
+        const button = document.querySelector("#register");
+        button.addEventListener("click", function(){
+            // id.value가 공백이면 false로 인식한다.
+            if(id.value && pwd.value){
+                alert("회원가입이 완료되었습니다.");
+            }
+            else alert("아이디와 비밀번호를 입력해주세요");
+        })
+    </script>
+</body>
+</html>

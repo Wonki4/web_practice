@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My title</title>
+</head>
+<body>
+    <h1>A heading</h1>
+    <div id="a-wrapper">
+        <a href="https://www.mcdonalds.co.kr">Link text</a>
+    </div>
+
+    <div id="test">test</div>
+    <div class="test-class">class</div>
+    <script>
+        //let a = document.children[0].children[1].children[1];
+        //a.textContent = "맥도날드";
+        let test = document.getElementById("test");
+        //console.log(test.innerHtml)
+        let testClass = document.getElementsByClassName("test-class");
+        //console.log(testClass[0]);
+
+        let q1= document.querySelector('#test');
+        //console.log(q1);
+        let q2= document.querySelector(".test-class");
+        //console.log(q2.innerHTML);
+
+        let z = document.querySelectorAll("div");
+        //console.log(z);
+
+        const h1 = document.querySelector("h1");
+        //alert(h1.textContent);
+        
+        const aTag = document.querySelector("#a-wrapper > a");
+        //console.log(aTag);
+        //aTag.innerHTML = "BBQWORLD";
+
+        let a = "KFC|ABC|CCE";
+        let arr = a.split("|");
+        console.log(arr);
+
+        for(let i = 0; i<arr.length;i++) {
+            console.log(arr[i]);
+        }
+        for(let str of arr) {
+            console.log(str);
+        }
+    </script>
+</body>
+</html>
