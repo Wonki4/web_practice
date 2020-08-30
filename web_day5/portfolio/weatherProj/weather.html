@@ -360,7 +360,7 @@
         }
 
         const setWeather = async (lat, lon, ptr) => {
-            let {data} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=84d2368f262f2a0907b50cbc408872bf`);
+            let {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=84d2368f262f2a0907b50cbc408872bf`);
             console.log(data);
             const {humidity, temp, temp_max, temp_min} = data.main;
             const {speed} = data.wind;
@@ -385,7 +385,7 @@
                     <div>Wind: ${speed}m/s</div>
                 </div>
             </div>`;
-            data = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=84d2368f262f2a0907b50cbc408872bf`);
+            data = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=84d2368f262f2a0907b50cbc408872bf`);
             const {list} = data.data;
             console.log(list);
             const separatedTime = separatedFunction(list);
