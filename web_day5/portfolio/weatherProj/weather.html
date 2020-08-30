@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d348728799594f1524fd7e08272ee6ee"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .body {
+            font-family: 'Noto+Sans+KR';
+            color:gainsboro;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            width:700px;
+            height:400px;
+            border: solid #dddddd 2px;
+            border-radius: 5px;
+            margin : 30px auto;
+        }
+        .weather-wrapper {
+            width:80%;
+            height: 200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+        .weather-location {
+            font-size: 30px;
+        }
+        .weather-img {
+            width: 100%;
+            height: 100%;
+            display : flex;
+            align-items: center;
+        }
+        .weather-temperature {
+            margin-left: 45px;
+            font-size : 22px;
+        }
+        .weather-status-wrapper {
+            font-size: 20px;
+        }
+        .forecast-wrapper {
+            width: 100%;
+            height: 200px;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user-card {
+            display:flex;
+            
+        }
+        #modalButton {
+            margin: 0 auto;
+            display: block;
+        }
+        .carousel-control-next, .carousel-control-prev {
+            width: 10%;
+        }
+        .carousel-control-next > span, .carousel-control-prev > span {
+            background-color: #dddddd;
+            border-radius: 3px;
+        }
+        .carousel-indicators {
+            bottom: -10px;
+        }
+        .carousel-indicators > li {
+            background-color: #dddddd;
+        }
+        .forecast-card {
+            display: flex;
+            align-items: center;
+            flex-direction:column;
+
+        }
+     </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Check weather</a>
+        </nav>
+    </header>
+    <main>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                        <div class="wrapper" id="wrapper-1">
+                                <div class="weather-wrapper">
+                                    <div class="weather-location-img-wrapper">
+                                        <div class="weather-location">Seoul, Korea</div>
+                                        <div class="weather-img">
+                                            <img src="images/026-rainbow.png" style="width:100px; height:100px;">
+                                            <div class="weather-temperature">26° / 27°</div>
+                                        </div>
+                                    </div>
+                                    <div class="weather-status-wrapper">
+                                        <div>Humidity:93%</div>
+                                        <div>Temperature:26</div>
+                                        <div>Pressure: 100</div>
+                                    </div>
+                                 </div>
+                    
+                                <div class="forecast-wrapper">
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card user_card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>      
+                                </div>
+                            </div>
+                  </div>
+                  <div class="carousel-item">
+                        <div class="wrapper" id="wrapper-2">
+                                <div class="weather-wrapper">
+                                    <div class="weather-location-img-wrapper">
+                                        <div class="weather-location">Seoul, Korea</div>
+                                        <div class="weather-img">
+                                            <img src="images/026-rainbow.png" style="width:100px; height:100px;">
+                                            <div class="weather-temperature">26° / 27°</div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="weather-status-wrapper">
+                                        <div>Humidity:93%</div>
+                                        <div>Temperature:26</div>
+                                        <div>Pressure: 100</div>
+                                    </div>
+                                 </div>
+                    
+                                <div class="forecast-wrapper">
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card user_card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>      
+                                </div>
+                            </div>
+                  </div>
+                  <div class="carousel-item">
+                        <div class="wrapper" id="wrapper-3">
+                                <div class="weather-wrapper">
+                                    <div class="weather-location-img-wrapper">
+                                        <div class="weather-location">Seoul, Korea</div>
+                                        <div class="weather-img">
+                                            <img src="images/026-rainbow.png" style="width:100px; height:100px;">
+                                            <div class="weather-temperature">26° / 27°</div>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="weather-status-wrapper">
+                                        <div>Humidity:93%</div>
+                                        <div>Temperature:26</div>
+                                        <div>Pressure: 100</div>
+                                    </div>
+                                 </div>
+                    
+                                <div class="forecast-wrapper">
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card user_card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>
+                                        <div class="card" style="width: 100px;">
+                                            <img src="images/030-wind.png" class="card-img-top" alt="..." style="margin: 10px; width : 60%;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">10/15</h5>
+                                              <p class="card-text" style="font-size: 12px;">23° / 25°</p>
+                                            </div>
+                                        </div>      
+                                </div>
+                            </div>                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="modalButton">
+                Map
+        </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Map</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="myModal">
+                          <div id="map" style="width:400px;height:300px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </main>
+
+    <script>
+        const latlngSet = {
+            Seoul : [37.59739089301034,126.96251860136508],
+            Busan : [35.20797061256533, 129.07769665577896],
+            Jeju : [33.51492413933799, 126.5510562833812],
+        };
+
+        const getPosition = function(options) { 
+             return new Promise(function(resolve, reject) {
+                 navigator.geolocation.getCurrentPosition(resolve, reject, options);
+             })
+        }
+        
+        const mapOption = (lat, lon) => {
+            return {
+                center: new kakao.maps.LatLng(lat, lon),
+                level: 10,
+            }
+        }
+        const matchIcon = (data) => {
+             if(data === "Clear") return "images/039-sun.png";
+             if(data === "Clouds") return "images/001-cloud.png";
+             if(data === "Rain") return "images/003-rainy.png";
+             if(data === "Snow") return "images/006-snowy.png";
+             if(data === "Thunderstorm") return "images/008-storm.png";
+             if(data === "Drizzle") return "images/031-snowflake.png";
+             if(data === "Atmosphere") return "images/033-hurricane.png";
+         }
+         const separatedFunction = (list) => {
+            return list.reduce((acc, cur) => {
+                        const {dt_txt} = cur;
+                        const splitHour = dt_txt.split(" ")[1].split(":")[0];
+                        if(splitHour === "09") {
+                            acc.push(cur);
+                        }
+                        return acc;
+                    } ,[]);
+        }
+
+        const separatedData = (arr, j, res) => {
+            for(let i = 0; i<res.length; i++) {
+                arr[j] = [];
+                if((i+1) % 3 === 0) j+= 1;
+            }
+            j = 0;
+
+            for(let i = 0; i<res.length;i++) {
+                arr[j].push(res[i]);
+                if((i+1)%3 === 0) j+=1;
+            }
+            
+            return arr;
+        }
+
+        const setWeather = async (lat, lon, ptr) => {
+            let {data} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=84d2368f262f2a0907b50cbc408872bf`);
+            console.log(data);
+            const {humidity, temp, temp_max, temp_min} = data.main;
+            const {speed} = data.wind;
+            const {name} = data;
+
+            const icon = matchIcon(data.weather[0]["main"]);
+            const changeTempMin = (temp_min - 273.15).toFixed(1);
+            const changeTempMax = (temp_max - 273.15).toFixed(1);
+            const changeTemp = (temp - 273.15).toFixed(1);
+            weatherWrapper[ptr].innerHTML = `<div class="weather-wrapper">
+                <div class="weather-location-img-wrapper">
+                    <div class="weather-location">${name}, Korea</div>
+                    <div class="weather-img">
+                        <img src=${icon} style="width:100px; height:100px;">
+                        <div class="weather-temperature">${changeTempMin}°/ ${changeTempMax}°</div>
+                    </div>
+                </div>
+
+                <div class="weather-status-wrapper">
+                    <div>Humidity:${humidity}%</div>
+                    <div>Temperature:${changeTemp}</div>
+                    <div>Wind: ${speed}m/s</div>
+                </div>
+            </div>`;
+            data = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=84d2368f262f2a0907b50cbc408872bf`);
+            const {list} = data.data;
+            console.log(list);
+            const separatedTime = separatedFunction(list);
+            console.log(separatedTime);
+            const forecast_wrapper = document.createElement('div');
+            forecast_wrapper.className = "forecast-wrapper";
+
+            for(let i = 0; i<separatedTime.length; i++) {
+                let {dt_txt} = separatedTime[i];
+                const month = dt_txt.split(" ")[0].split("-")[1];
+                const day = dt_txt.split(" ")[0].split("-")[2];
+                const {temp_max, temp_min} = separatedTime[i]["main"];
+                const changeTempMin = (temp_min - 273.15).toFixed(1);
+                const changeTempMax = (temp_max - 273.15).toFixed(1);
+                const icon = matchIcon(separatedTime[i]["weather"][0]["main"]);
+                forecast_wrapper.innerHTML += `<div class="card forecast-card" style="width: 100px;">
+                                            <img src=${icon} class="card-img-top" alt="..." style="margin: 10px; width : 60%;"/>
+                                            <div class="card-body">
+                                              <h5 class="card-title">${month}/${day}</h5>
+                                              <p class="card-text" style="font-size: 10px;">${changeTempMin}°/${changeTempMax}°</p>
+                                            </div>
+                                        </div>`;
+            }
+            weatherWrapper[ptr].appendChild(forecast_wrapper);
+        }
+
+        const initWeather = function() {
+            setWeather(latlngSet["Seoul"][0],latlngSet["Seoul"][1],0);
+            setWeather(latlngSet["Busan"][0],latlngSet["Seoul"][1],1);
+            setWeather(latlngSet["Jeju"][0],latlngSet["Seoul"][1],2);
+        }
+
+        const mapContainer = document.querySelector("#map");
+        const weatherWrapper = document.querySelectorAll(".wrapper");
+
+
+        const getData = async () => {
+            try {
+                console.log(111);
+                const position = await getPosition();
+                const {latitude, longitude} = position.coords;
+                const map = new kakao.maps.Map(mapContainer, mapOption(latitude, longitude));
+
+                const markers = [new kakao.maps.Marker(), new kakao.maps.Marker(), new kakao.maps.Marker()];
+                let ptr = 0;
+                initWeather();
+                console.log(markers);
+                $('#exampleModal').on('shown.bs.modal', function (e) {
+                    map.relayout();
+                })
+                kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+                    let latlng = mouseEvent.latLng;
+                    markers[ptr].setPosition(latlng);
+                    markers[ptr].setMap(map);
+                    ptr = (ptr+1)%3;
+                    console.log(latlng.Ha, latlng.Ga);
+                    setWeather(latlng.Ha, latlng.Ga, ptr);
+                });
+            }
+
+
+            catch(err) {
+                console.log("error");
+                const latitude = 37.40811301494989;
+                const longitude = 127.11364034154028;
+                const map = new kakao.maps.Map(mapContainer, mapOption(latitude, longitude));
+
+                const markers = [new kakao.maps.Marker(), new kakao.maps.Marker(), new kakao.maps.Marker()];
+                let ptr = 0;
+                console.log(markers);
+                $('#exampleModal').on('shown.bs.modal', function (e) {
+                    map.relayout();
+                })
+                kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+                    let latlng = mouseEvent.latLng; 
+                    marker[ptr].setPosition(latlng);
+                    markers[ptr].setMap(map);
+                    ptr = (ptr+1)%3;
+                });
+            }
+        }
+        getData();
+        
+    </script>
+</body>
+</html>
